@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import $ from "jquery";
 
 import Search from './Search'
+import Results from './Results'
 
 class Home extends Component {
   constructor(props) {
@@ -75,6 +76,10 @@ class Home extends Component {
           handleSelection={this.handleSelection}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+        />
+        <Results
+          selection={this.state.selection}
+          results={this.state.results}
         />
       </div>
     )
