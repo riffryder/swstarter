@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
-export default class Home extends Component {
+import Search from './Search'
+
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+    }
+  }
+
   render() {
-    return <div>Home</div>;
+    return (
+      <div>
+        <h1>SWStarter</h1>
+        <Search />
+      </div>
+    )
   }
 }
+
+export default Home;
