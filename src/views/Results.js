@@ -11,7 +11,7 @@ const Results = ({selection, results}) => (
               <div key={resultIndex}>{result.name}</div>
             <Link to={{
               pathname: `/people/${result.name}`,
-              state: { detail: result }
+              state: { detail: result, type: selection }
             }}>
               <button>See Details</button>
             </Link>
@@ -25,7 +25,7 @@ const Results = ({selection, results}) => (
               <div key={resultIndex}>{result.title}</div>
               <Link to={{
                 pathname: `/films/${result.title}`,
-                state: { detail: result }
+                state: { detail: result, type: selection }
               }}>
                 <button>See Details</button>
               </Link>
