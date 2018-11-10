@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Results = ({selection, results}) => (
     <div>
@@ -8,7 +9,12 @@ const Results = ({selection, results}) => (
           {results.map((result, resultIndex) => 
             <div>
               <div key={resultIndex}>{result.name}</div>
+            <Link to={{
+              pathname: `/people/${result.name}`,
+              state: { detail: result }
+            }}>
               <button>See Details</button>
+            </Link>
             </div>
           )}
         </div>
@@ -17,7 +23,12 @@ const Results = ({selection, results}) => (
           {results.map((result, resultIndex) =>
             <div>
               <div key={resultIndex}>{result.title}</div>
-              <button>See Details</button>
+              <Link to={{
+                pathname: `/films/${result.title}`,
+                state: { detail: result }
+              }}>
+                <button>See Details</button>
+              </Link>
             </div>
           )}
         </div>
