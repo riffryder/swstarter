@@ -22,7 +22,9 @@ class Home extends Component {
 
   handleSelection(event) {
     this.setState({
-      selection: event.target.value
+      selection: event.target.value,
+      searchTerm: "",
+      results: []
     })
   }
 
