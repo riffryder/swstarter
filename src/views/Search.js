@@ -1,9 +1,9 @@
 import React from "react";
 
-const Search = ({selection, searchTerm, handleSelection, handleChange}) => (
+const Search = ({selection, searchTerm, handleSelection, handleChange, handleSubmit}) => (
   <div>
     <h4>What are you searching for?</h4>
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         <input
           type="radio"

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import $ from "jquery";
 
 import Search from './Search'
 
@@ -8,10 +9,12 @@ class Home extends Component {
     this.state ={
       selection: "People",
       searchTerm: "",
+      results: [],
     }
 
     this.handleSelection = this.handleSelection.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // handle radio button toggle
@@ -30,6 +33,38 @@ class Home extends Component {
     })
   }
 
+  // handle search term submit
+
+  handleSubmit(event) {
+    let searchTerm = this.state.searchTerm;
+    let targetUrl = 'https://swapi.co/api';
+    console.log('SEARCH TERM', searchTerm)
+    if (this.state.selection === "People") {
+      $.get(`${targetUrl}/people/?search=${searchTerm}`)
+        .then((res) => {
+          this.setState({
+            results: res.results
+          });
+          // console.log("CHAR RESULTS", this.state.results);
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
+    } else if (this.state.selection === "Movies") {
+      $.get(`${targetUrl}/films/?search=${searchTerm}`)
+        .then((res) => {
+          this.setState({
+            results: res.results
+          });
+          // console.log("MOVIE RESULTS", this.state.results);
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
+    }
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div>
@@ -39,6 +74,7 @@ class Home extends Component {
           searchTerm={this.state.searchTerm}
           handleSelection={this.handleSelection}
           handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
       </div>
     )
