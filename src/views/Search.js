@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = (props) => (
+const Search = ({selection, searchTerm, handleSelection, handleChange}) => (
   <div>
     <h4>What are you searching for?</h4>
     <form>
@@ -8,7 +8,8 @@ const Search = (props) => (
         <input
           type="radio"
           value="People"
-          checked={true}
+          checked={selection === "People"}
+          onChange={handleSelection}
         />
         People
       </label>
@@ -16,6 +17,8 @@ const Search = (props) => (
         <input
           type="radio"
           value="Movies"
+          checked={selection === "Movies"}
+          onChange={handleSelection}
         />
         Movies
       </label>
@@ -23,6 +26,8 @@ const Search = (props) => (
         <input
           type="text"
           placeholder="e.g. Chewbacca, Yoda, Boba Fett"
+          value={searchTerm}
+          onChange={handleChange}
         />
       </div>
       <input type="submit" value="Submit" />
