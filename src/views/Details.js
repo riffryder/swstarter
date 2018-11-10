@@ -64,14 +64,22 @@ class Details extends Component {
   }
 
   render() {
+    console.log("DETAILS PROPS", this.props);
     const { type } = this.props.location.state;
+    const { detail } = this.props.location.state;
 
     return (
       <div>
         {type === "People" ? (
-          <PeopleDetail films={this.state.films} />
+          <PeopleDetail
+            films={this.state.films}
+            detail={detail}
+          />
         ) : (
-          <FilmDetail characters={this.state.characters} />
+          <FilmDetail
+            characters={this.state.characters}
+            detail={detail}
+          />
         )}
       </div>
     )
