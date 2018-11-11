@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 import PeopleDetail from './PeopleDetail';
@@ -21,6 +22,21 @@ class Details extends Component {
     type === "People" ? this.fetchFilms() : this.fetchCharacters();
   }
 
+  // reset state, update component props, and fetch data when user navigates through links
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      characters: [],
+      films: []
+    });
+
+    this.props = nextProps;
+
+    const { type } = this.props.location.state;
+
+    type === "Films" ? this.fetchCharacters() : this.fetchFilms();
+  }
+
   // fetch films for character in result
 
   fetchFilms() {
@@ -30,15 +46,15 @@ class Details extends Component {
     films.forEach((url) => {
       $.get(url)
         .then((res) => {
-          filmsArr.push([res.title, res.url])
+          // console.log("FILMS RES", res)
+          filmsArr.push(res)
+          this.setState({
+            films: filmsArr
+          });
         })
         .catch((error) => {
           console.log("Error fetching films", error);
         });
-    });
-
-    this.setState({
-      films: filmsArr
     });
   }
 
@@ -51,20 +67,20 @@ class Details extends Component {
     characters.forEach((url) => {
       $.get(url)
         .then((res) => {
-          characterArr.push([res.name, res.url])
+          characterArr.push(res)
+          this.setState({
+            characters: characterArr
+          });
         })
         .catch((error) => {
           console.log("Error getting characters", error);
         })
     });
 
-    this.setState({
-      characters: characterArr
-    });
   }
 
   render() {
-    console.log("DETAILS PROPS", this.props);
+    // console.log("DETAILS PROPS", this.props);
     const { type } = this.props.location.state;
     const { detail } = this.props.location.state;
 
@@ -81,6 +97,11 @@ class Details extends Component {
             detail={detail}
           />
         )}
+        <Link to="/">
+          <button>
+            Back to Search
+          </button>
+        </Link>
       </div>
     )
   }
