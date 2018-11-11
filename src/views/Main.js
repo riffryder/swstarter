@@ -71,7 +71,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1>SWStarter</h1>
         <Search
           selection={this.state.selection}
           searchTerm={this.state.searchTerm}

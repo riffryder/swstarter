@@ -1,3 +1,19 @@
 .App {
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  background-color: #ededed;
+  overflow: hidden;
+}
+
+.header {
+  width: auto;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 0 0 #dadada;
+  background-color: #ffffff;
+  color: #0ab463;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
